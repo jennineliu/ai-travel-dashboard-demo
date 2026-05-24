@@ -78,12 +78,6 @@ All functionality was consolidated into a single operational interface accessibl
 ### Mobile Threat Intelligence
 ![Mobile Threat Intelligence](screenshots/mobile-threat-intelligence-panel.png)
 
-### Mobile Geospatial Risk Mapping
-![Mobile Risk Map](screenshots/mobile-geospatial-risk-map.png)
-
-### Mobile Borough Risk Profiles
-![Mobile Borough Profiles](screenshots/mobile-borough-risk-profiles.png)
-
 ### Mobile Compliance Guidance
 ![Mobile Compliance](screenshots/mobile-local-compliance-guidance.png)
 
