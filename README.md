@@ -68,9 +68,6 @@ All functionality was consolidated into a single operational interface accessibl
 ### Traveler Emergency Support
 ![Emergency Support](screenshots/traveler-emergency-support.png)
 
-### Transportation Safety Guidance
-![Transportation Guidance](screenshots/transportation-safety-guidance.png)
-
 ---
 
 ## Mobile Experience
