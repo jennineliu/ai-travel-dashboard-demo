@@ -185,7 +185,7 @@ The new workflow:
 - accelerated intelligence-to-delivery timelines from days to operational-ready outputs.
 - established a scalable framework for future enterprise deployments.
 
-The client’s Global Esports Director praised the solution’s creativity and operational fit, and the project was later featured in Everbridge’s inaugural enterprise AI newsletter as a first-mover operational AI implementation use case.
+The client praised the solution’s creativity and operational fit, and the project was later featured in my company's inaugural enterprise AI newsletter as a first-mover operational AI implementation use case.
 
 ---
 
