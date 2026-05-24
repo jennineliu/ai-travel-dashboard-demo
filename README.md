@@ -1,5 +1,10 @@
 # ai-travel-dashboard-demo
 Transforming Static Intelligence Reporting into Interactive Operational Intelligence
+
+## Live Demo
+
+[Launch Dashboard Demo](https://jennineliu.github.io/ai-travel-dashboard-demo/)
+
 # 1. Operational Problem
 
 The client’s global esports operations team received multiple static PDF and PowerPoint travel security reports for each international event, creating operational friction across eight annual tournaments involving hundreds to thousands of travelers, staff, vendors, and event participants.
