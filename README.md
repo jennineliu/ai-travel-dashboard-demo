@@ -24,7 +24,7 @@ Intelligence products distributed through email, Slack, and WhatsApp created:
 
 Initial dashboard prototypes were distributed through Gemini-hosted public links, creating privacy, authentication, and enterprise compliance concerns for operational deployment.
 
-To support secure production usage, I partnered with a Professional Services full-stack engineer / solutions architect to design and deploy a private AWS S3 hosting workflow that:
+To support secure production usage, I deployed a private AWS S3 hosting workflow that:
 
 - eliminated dependency on public Gemini-hosted links.
 - reduced authentication friction for travelers.
