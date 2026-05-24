@@ -57,7 +57,7 @@ All functionality was consolidated into a single operational interface accessibl
 ## Desktop Experience
 
 ### Operational Dashboard Overview
-![Dashboard Overview](screenshots/dashboard-overview-desktop.jpeg)
+![Dashboard Overview](screenshots/dashboard-overview-desktop.png)
 
 ### Threat Intelligence Panel
 ![Threat Intelligence](screenshots/threat-intelligence-panel.png)
