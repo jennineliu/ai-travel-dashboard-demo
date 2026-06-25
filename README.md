@@ -4,7 +4,7 @@ Transforming static travel intelligence reporting into an interactive, mobile-fi
 
 ## Live Demo
 
-[Launch Interactive Dashboard](https://jennineliu.github.io/ai-travel-dashboard-demo/)
+[Launch Interactive Dashboard](https://jennineliu.github.io/ai-travel-dashboard-demo/?v=10)
 
 ---
 
