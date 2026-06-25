@@ -1,0 +1,2163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>London Traveler Security Dashboard</title>
+    <!-- Styles are compiled inline so this file can run without a CDN boot sequence. -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .text-shadow-lg { text-shadow: 0 4px 6px rgba(0,0,0,0.4); }
+        .tab-transition { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        #root:empty { min-height: 100vh; background-color: #020617; }
+        /* Glassmorphism utility */
+        .glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .glass-light { background: rgba(255, 255, 255, 0.07); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.12); }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(0.95); opacity: 0.5; }
+        }
+        .pulse-accent { animation: pulse-ring 3s infinite ease-in-out; }
+    </style>
+    <style id="tailwind-compiled-css">
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+html,
+:host {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+     tab-size: 4;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  line-height: inherit;
+}
+
+hr {
+  height: 0;
+  color: inherit;
+  border-top-width: 1px;
+}
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+  font-size: 1em;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+table {
+  text-indent: 0;
+  border-color: inherit;
+  border-collapse: collapse;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
+  -webkit-appearance: button;
+  background-color: transparent;
+  background-image: none;
+}
+
+:-moz-focusring {
+  outline: auto;
+}
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type='search'] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+summary {
+  display: list-item;
+}
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+dialog {
+  padding: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1;
+  color: #9ca3af;
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+  color: #9ca3af;
+}
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+:disabled {
+  cursor: default;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  vertical-align: middle;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+[hidden]:where(:not([hidden="until-found"])) {
+  display: none;
+}
+.pointer-events-none {
+  pointer-events: none;
+}
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.inset-0 {
+  inset: 0px;
+}
+.bottom-0 {
+  bottom: 0px;
+}
+.left-0 {
+  left: 0px;
+}
+.right-0 {
+  right: 0px;
+}
+.right-4 {
+  right: 1rem;
+}
+.top-0 {
+  top: 0px;
+}
+.top-4 {
+  top: 1rem;
+}
+.z-10 {
+  z-index: 10;
+}
+.z-30 {
+  z-index: 30;
+}
+.z-50 {
+  z-index: 50;
+}
+.-mx-4 {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.-mt-8 {
+  margin-top: -2rem;
+}
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mr-2 {
+  margin-right: 0.5rem;
+}
+.mt-0\.5 {
+  margin-top: 0.125rem;
+}
+.mt-1 {
+  margin-top: 0.25rem;
+}
+.mt-16 {
+  margin-top: 4rem;
+}
+.mt-3 {
+  margin-top: 0.75rem;
+}
+.mt-6 {
+  margin-top: 1.5rem;
+}
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
+}
+.flex {
+  display: flex;
+}
+.inline-flex {
+  display: inline-flex;
+}
+.grid {
+  display: grid;
+}
+.h-1 {
+  height: 0.25rem;
+}
+.h-2\.5 {
+  height: 0.625rem;
+}
+.h-3\.5 {
+  height: 0.875rem;
+}
+.h-4 {
+  height: 1rem;
+}
+.h-5 {
+  height: 1.25rem;
+}
+.h-6 {
+  height: 1.5rem;
+}
+.h-\[160px\] {
+  height: 160px;
+}
+.h-\[320px\] {
+  height: 320px;
+}
+.h-\[450px\] {
+  height: 450px;
+}
+.h-full {
+  height: 100%;
+}
+.min-h-screen {
+  min-height: 100vh;
+}
+.w-2\.5 {
+  width: 0.625rem;
+}
+.w-3\.5 {
+  width: 0.875rem;
+}
+.w-4 {
+  width: 1rem;
+}
+.w-5 {
+  width: 1.25rem;
+}
+.w-6 {
+  width: 1.5rem;
+}
+.w-full {
+  width: 100%;
+}
+.min-w-\[150px\] {
+  min-width: 150px;
+}
+.min-w-\[240px\] {
+  min-width: 240px;
+}
+.max-w-2xl {
+  max-width: 42rem;
+}
+.max-w-4xl {
+  max-width: 56rem;
+}
+.max-w-6xl {
+  max-width: 72rem;
+}
+.max-w-xl {
+  max-width: 36rem;
+}
+.flex-1 {
+  flex: 1 1 0%;
+}
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+.scale-105 {
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+@keyframes bounce {
+
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+@keyframes ping {
+
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+.animate-ping {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes pulse {
+
+  50% {
+    opacity: .5;
+  }
+}
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.list-disc {
+  list-style-type: disc;
+}
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.items-start {
+  align-items: flex-start;
+}
+.items-center {
+  align-items: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.gap-1 {
+  gap: 0.25rem;
+}
+.gap-1\.5 {
+  gap: 0.375rem;
+}
+.gap-2 {
+  gap: 0.5rem;
+}
+.gap-3 {
+  gap: 0.75rem;
+}
+.gap-4 {
+  gap: 1rem;
+}
+.gap-6 {
+  gap: 1.5rem;
+}
+.gap-8 {
+  gap: 2rem;
+}
+.gap-x-6 {
+  -moz-column-gap: 1.5rem;
+       column-gap: 1.5rem;
+}
+.gap-y-2 {
+  row-gap: 0.5rem;
+}
+.space-y-3 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+}
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+.space-y-6 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
+}
+.space-y-8 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+}
+.self-start {
+  align-self: flex-start;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-x-auto {
+  overflow-x: auto;
+}
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+.rounded {
+  border-radius: 0.25rem;
+}
+.rounded-2xl {
+  border-radius: 1rem;
+}
+.rounded-3xl {
+  border-radius: 1.5rem;
+}
+.rounded-\[2\.5rem\] {
+  border-radius: 2.5rem;
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+.rounded-md {
+  border-radius: 0.375rem;
+}
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+.rounded-b-3xl {
+  border-bottom-right-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+}
+.border {
+  border-width: 1px;
+}
+.border-0 {
+  border-width: 0px;
+}
+.border-x {
+  border-left-width: 1px;
+  border-right-width: 1px;
+}
+.border-b {
+  border-bottom-width: 1px;
+}
+.border-t {
+  border-top-width: 1px;
+}
+.border-t-4 {
+  border-top-width: 4px;
+}
+.border-amber-500\/30 {
+  border-color: rgb(245 158 11 / 0.3);
+}
+.border-emerald-500\/20 {
+  border-color: rgb(16 185 129 / 0.2);
+}
+.border-orange-500\/30 {
+  border-color: rgb(249 115 22 / 0.3);
+}
+.border-purple-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(168 85 247 / var(--tw-border-opacity, 1));
+}
+.border-red-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity, 1));
+}
+.border-red-500\/20 {
+  border-color: rgb(239 68 68 / 0.2);
+}
+.border-red-500\/30 {
+  border-color: rgb(239 68 68 / 0.3);
+}
+.border-red-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(220 38 38 / var(--tw-border-opacity, 1));
+}
+.border-red-700\/60 {
+  border-color: rgb(185 28 28 / 0.6);
+}
+.border-red-900\/40 {
+  border-color: rgb(127 29 29 / 0.4);
+}
+.border-sky-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(14 165 233 / var(--tw-border-opacity, 1));
+}
+.border-sky-500\/30 {
+  border-color: rgb(14 165 233 / 0.3);
+}
+.border-slate-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(71 85 105 / var(--tw-border-opacity, 1));
+}
+.border-slate-700 {
+  --tw-border-opacity: 1;
+  border-color: rgb(51 65 85 / var(--tw-border-opacity, 1));
+}
+.border-slate-800 {
+  --tw-border-opacity: 1;
+  border-color: rgb(30 41 59 / var(--tw-border-opacity, 1));
+}
+.border-slate-800\/50 {
+  border-color: rgb(30 41 59 / 0.5);
+}
+.border-slate-800\/80 {
+  border-color: rgb(30 41 59 / 0.8);
+}
+.border-slate-900 {
+  --tw-border-opacity: 1;
+  border-color: rgb(15 23 42 / var(--tw-border-opacity, 1));
+}
+.border-teal-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(13 148 136 / var(--tw-border-opacity, 1));
+}
+.bg-amber-500\/10 {
+  background-color: rgb(245 158 11 / 0.1);
+}
+.bg-emerald-500\/15 {
+  background-color: rgb(16 185 129 / 0.15);
+}
+.bg-emerald-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(5 150 105 / var(--tw-bg-opacity, 1));
+}
+.bg-orange-500\/10 {
+  background-color: rgb(249 115 22 / 0.1);
+}
+.bg-red-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity, 1));
+}
+.bg-red-500\/10 {
+  background-color: rgb(239 68 68 / 0.1);
+}
+.bg-red-500\/20 {
+  background-color: rgb(239 68 68 / 0.2);
+}
+.bg-red-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity, 1));
+}
+.bg-red-600\/10 {
+  background-color: rgb(220 38 38 / 0.1);
+}
+.bg-red-950\/20 {
+  background-color: rgb(69 10 10 / 0.2);
+}
+.bg-red-950\/40 {
+  background-color: rgb(69 10 10 / 0.4);
+}
+.bg-red-950\/90 {
+  background-color: rgb(69 10 10 / 0.9);
+}
+.bg-sky-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(14 165 233 / var(--tw-bg-opacity, 1));
+}
+.bg-sky-500\/10 {
+  background-color: rgb(14 165 233 / 0.1);
+}
+.bg-slate-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(51 65 85 / var(--tw-bg-opacity, 1));
+}
+.bg-slate-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 41 59 / var(--tw-bg-opacity, 1));
+}
+.bg-slate-800\/50 {
+  background-color: rgb(30 41 59 / 0.5);
+}
+.bg-slate-800\/80 {
+  background-color: rgb(30 41 59 / 0.8);
+}
+.bg-slate-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 23 42 / var(--tw-bg-opacity, 1));
+}
+.bg-slate-900\/90 {
+  background-color: rgb(15 23 42 / 0.9);
+}
+.bg-slate-950 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(2 6 23 / var(--tw-bg-opacity, 1));
+}
+.bg-slate-950\/40 {
+  background-color: rgb(2 6 23 / 0.4);
+}
+.bg-slate-950\/60 {
+  background-color: rgb(2 6 23 / 0.6);
+}
+.bg-slate-950\/80 {
+  background-color: rgb(2 6 23 / 0.8);
+}
+.bg-gradient-to-t {
+  background-image: linear-gradient(to top, var(--tw-gradient-stops));
+}
+.from-slate-950 {
+  --tw-gradient-from: #020617 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(2 6 23 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.via-slate-950\/40 {
+  --tw-gradient-to: rgb(2 6 23 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(2 6 23 / 0.4) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+.to-black\/50 {
+  --tw-gradient-to: rgb(0 0 0 / 0.5) var(--tw-gradient-to-position);
+}
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.p-1\.5 {
+  padding: 0.375rem;
+}
+.p-10 {
+  padding: 2.5rem;
+}
+.p-2 {
+  padding: 0.5rem;
+}
+.p-3 {
+  padding: 0.75rem;
+}
+.p-4 {
+  padding: 1rem;
+}
+.p-5 {
+  padding: 1.25rem;
+}
+.p-6 {
+  padding: 1.5rem;
+}
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+.px-2\.5 {
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+.px-3\.5 {
+  padding-left: 0.875rem;
+  padding-right: 0.875rem;
+}
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.py-0\.5 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+.pb-8 {
+  padding-bottom: 2rem;
+}
+.pl-4 {
+  padding-left: 1rem;
+}
+.pr-10 {
+  padding-right: 2.5rem;
+}
+.pt-2 {
+  padding-top: 0.5rem;
+}
+.pt-6 {
+  padding-top: 1.5rem;
+}
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+.text-\[10px\] {
+  font-size: 10px;
+}
+.text-\[11px\] {
+  font-size: 11px;
+}
+.text-\[13px\] {
+  font-size: 13px;
+}
+.text-\[9px\] {
+  font-size: 9px;
+}
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+.font-\[900\] {
+  font-weight: 900;
+}
+.font-black {
+  font-weight: 900;
+}
+.font-bold {
+  font-weight: 700;
+}
+.font-medium {
+  font-weight: 500;
+}
+.font-semibold {
+  font-weight: 600;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.italic {
+  font-style: italic;
+}
+.not-italic {
+  font-style: normal;
+}
+.tabular-nums {
+  --tw-numeric-spacing: tabular-nums;
+  font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
+}
+.leading-none {
+  line-height: 1;
+}
+.leading-relaxed {
+  line-height: 1.625;
+}
+.leading-snug {
+  line-height: 1.375;
+}
+.tracking-\[0\.1em\] {
+  letter-spacing: 0.1em;
+}
+.tracking-\[0\.2em\] {
+  letter-spacing: 0.2em;
+}
+.tracking-\[0\.3em\] {
+  letter-spacing: 0.3em;
+}
+.tracking-tight {
+  letter-spacing: -0.025em;
+}
+.tracking-tighter {
+  letter-spacing: -0.05em;
+}
+.tracking-wider {
+  letter-spacing: 0.05em;
+}
+.tracking-widest {
+  letter-spacing: 0.1em;
+}
+.text-amber-400 {
+  --tw-text-opacity: 1;
+  color: rgb(251 191 36 / var(--tw-text-opacity, 1));
+}
+.text-amber-500 {
+  --tw-text-opacity: 1;
+  color: rgb(245 158 11 / var(--tw-text-opacity, 1));
+}
+.text-emerald-400 {
+  --tw-text-opacity: 1;
+  color: rgb(52 211 153 / var(--tw-text-opacity, 1));
+}
+.text-orange-400 {
+  --tw-text-opacity: 1;
+  color: rgb(251 146 60 / var(--tw-text-opacity, 1));
+}
+.text-red-100 {
+  --tw-text-opacity: 1;
+  color: rgb(254 226 226 / var(--tw-text-opacity, 1));
+}
+.text-red-300 {
+  --tw-text-opacity: 1;
+  color: rgb(252 165 165 / var(--tw-text-opacity, 1));
+}
+.text-red-400 {
+  --tw-text-opacity: 1;
+  color: rgb(248 113 113 / var(--tw-text-opacity, 1));
+}
+.text-sky-400 {
+  --tw-text-opacity: 1;
+  color: rgb(56 189 248 / var(--tw-text-opacity, 1));
+}
+.text-slate-100 {
+  --tw-text-opacity: 1;
+  color: rgb(241 245 249 / var(--tw-text-opacity, 1));
+}
+.text-slate-200 {
+  --tw-text-opacity: 1;
+  color: rgb(226 232 240 / var(--tw-text-opacity, 1));
+}
+.text-slate-300 {
+  --tw-text-opacity: 1;
+  color: rgb(203 213 225 / var(--tw-text-opacity, 1));
+}
+.text-slate-400 {
+  --tw-text-opacity: 1;
+  color: rgb(148 163 184 / var(--tw-text-opacity, 1));
+}
+.text-slate-50 {
+  --tw-text-opacity: 1;
+  color: rgb(248 250 252 / var(--tw-text-opacity, 1));
+}
+.text-slate-500 {
+  --tw-text-opacity: 1;
+  color: rgb(100 116 139 / var(--tw-text-opacity, 1));
+}
+.text-slate-600 {
+  --tw-text-opacity: 1;
+  color: rgb(71 85 105 / var(--tw-text-opacity, 1));
+}
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+.underline {
+  text-decoration-line: underline;
+}
+.decoration-red-400 {
+  text-decoration-color: #f87171;
+}
+.decoration-sky-500\/30 {
+  text-decoration-color: rgb(14 165 233 / 0.3);
+}
+.decoration-wavy {
+  text-decoration-style: wavy;
+}
+.decoration-2 {
+  text-decoration-thickness: 2px;
+}
+.underline-offset-4 {
+  text-underline-offset: 4px;
+}
+.antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.opacity-60 {
+  opacity: 0.6;
+}
+.shadow-2xl {
+  --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-\[0_0_15px_rgba\(14\2c 165\2c 233\2c 0\.5\)\] {
+  --tw-shadow: 0 0 15px rgba(14,165,233,0.5);
+  --tw-shadow-colored: 0 0 15px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-inner {
+  --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-lg {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-md {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.ring-2 {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+.ring-sky-500\/50 {
+  --tw-ring-color: rgb(14 165 233 / 0.5);
+}
+.blur {
+  --tw-blur: blur(8px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.drop-shadow-md {
+  --tw-drop-shadow: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.backdrop-blur-xl {
+  --tw-backdrop-blur: blur(24px);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+.backdrop-filter {
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+.transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.duration-300 {
+  transition-duration: 300ms;
+}
+.duration-500 {
+  transition-duration: 500ms;
+}
+.duration-700 {
+  transition-duration: 700ms;
+}
+.hover\:border-sky-500\/30:hover {
+  border-color: rgb(14 165 233 / 0.3);
+}
+.hover\:border-slate-700:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(51 65 85 / var(--tw-border-opacity, 1));
+}
+.hover\:bg-emerald-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(4 120 87 / var(--tw-bg-opacity, 1));
+}
+.hover\:bg-slate-900\/60:hover {
+  background-color: rgb(15 23 42 / 0.6);
+}
+.hover\:text-sky-300:hover {
+  --tw-text-opacity: 1;
+  color: rgb(125 211 252 / var(--tw-text-opacity, 1));
+}
+.hover\:text-slate-300:hover {
+  --tw-text-opacity: 1;
+  color: rgb(203 213 225 / var(--tw-text-opacity, 1));
+}
+.group:hover .group-hover\:bg-sky-500\/10 {
+  background-color: rgb(14 165 233 / 0.1);
+}
+.group:hover .group-hover\:text-sky-400 {
+  --tw-text-opacity: 1;
+  color: rgb(56 189 248 / var(--tw-text-opacity, 1));
+}
+@media (min-width: 640px) {
+
+  .sm\:right-6 {
+    right: 1.5rem;
+  }
+
+  .sm\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .sm\:h-\[350px\] {
+    height: 350px;
+  }
+
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sm\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .sm\:flex-row {
+    flex-direction: row;
+  }
+
+  .sm\:gap-3 {
+    gap: 0.75rem;
+  }
+
+  .sm\:p-10 {
+    padding: 2.5rem;
+  }
+
+  .sm\:p-16 {
+    padding: 4rem;
+  }
+
+  .sm\:p-6 {
+    padding: 1.5rem;
+  }
+
+  .sm\:p-8 {
+    padding: 2rem;
+  }
+
+  .sm\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .sm\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .sm\:py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .sm\:pb-12 {
+    padding-bottom: 3rem;
+  }
+
+  .sm\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .sm\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .sm\:text-\[11px\] {
+    font-size: 11px;
+  }
+
+  .sm\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .sm\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .sm\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .sm\:text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+}
+@media (min-width: 768px) {
+
+  .md\:h-\[420px\] {
+    height: 420px;
+  }
+
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:flex-row {
+    flex-direction: row;
+  }
+
+  .md\:items-end {
+    align-items: flex-end;
+  }
+
+  .md\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+}
+@media (min-width: 1024px) {
+
+  .lg\:right-8 {
+    right: 2rem;
+  }
+
+  .lg\:col-span-1 {
+    grid-column: span 1 / span 1;
+  }
+
+  .lg\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
+  .lg\:min-w-full {
+    min-width: 100%;
+  }
+
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .lg\:flex-col {
+    flex-direction: column;
+  }
+
+  .lg\:p-8 {
+    padding: 2rem;
+  }
+
+  .lg\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .lg\:pb-0 {
+    padding-bottom: 0px;
+  }
+}
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-50 antialiased overflow-x-hidden text-left">
+    <div id="root"></div>
+
+    <script>
+        const riskCategories = [
+            {
+                id: "overall",
+                name: "Terror Threat Level",
+                level: "SEVERE (NEW)",
+                icon: "shieldAlert",
+                accent: "#ef4444",
+                chipClass: "bg-red-500/10 border-red-500/30",
+                description: "The UK Government officially raised the national terrorism threat level to SEVERE in May 2026 following a key security incident in Golders Green. Attacks in London continue to target major crowd centers, landmarks, and transportation networks.",
+                policeProfile: "The Met Police and City of London Police have heavily mobilized high-visibility patrols, live facial-recognition systems, and counter-terrorism squads. Response units are highly trained, but visitors are urged to remain hyper-vigilant near transit networks and landmark plazas.",
+                tips: [
+                    "Remain aware of surroundings near crowded areas and tourist squares.",
+                    "Understand the UK national protocol: RUN, HIDE, TELL.",
+                    "Report any unattended backpacks or unusual activities to transport officials immediately."
+                ]
+            },
+            {
+                id: "crime",
+                name: "Crime & Theft",
+                level: "High Frequency",
+                icon: "smartphone",
+                accent: "#f59e0b",
+                chipClass: "bg-amber-500/10 border-amber-500/30",
+                description: "While overall phone-theft statistics have recently fallen by 12.3% due to high-intensity police operations using specialized e-bikes and drones, over 71,000 phones were stolen in the past year. High-speed phone grabs by thieves on e-scooters and moped networks are exceptionally common near curb edges.",
+                locations: [
+                    "Borough: Westminster (Oxford Street, Soho)",
+                    "Borough: Camden (Camden Market, High Street)",
+                    "Borough: Kensington and Chelsea (Museum District)",
+                    "Borough: Islington",
+                    "Borough: Hackney",
+                    "Station: King's Cross St Pancras",
+                    "Station: Tottenham Court Road",
+                    "Station: Leicester Square"
+                ],
+                stats: "Westminster and Camden account for the highest density of phone and luxury watch snatchings in central London.",
+                tips: [
+                    "Never hold your phone close to the road edge. Keep it on the building side.",
+                    "Avoid displaying high-end luxury watches or jewelry openly on the streets of Westminster or Soho at night.",
+                    "Do not hand your device to strangers who ask to borrow it or approach you to read something."
+                ]
+            },
+            {
+                id: "unrest",
+                name: "Civil Unrest",
+                level: "Frequent",
+                icon: "users",
+                accent: "#fb923c",
+                chipClass: "bg-orange-500/10 border-orange-500/30",
+                description: "Protests and political gatherings remain a regular occurrence in central London. While largely orderly and strictly policed, major demonstrations can trigger extensive transit shutdowns, bus route alterations, and localized pedestrian friction.",
+                locations: [
+                    "Trafalgar Square",
+                    "Downing Street & Whitehall",
+                    "Parliament Square",
+                    "Hyde Park Corner"
+                ],
+                tips: [
+                    "Check @TfL on social platforms or transit boards for live closure alerts.",
+                    "If you stumble upon a highly dense rally, move to side streets.",
+                    "Expect heavy delays in Westminster and City areas on Saturdays due to recurring demonstrations."
+                ]
+            },
+            {
+                id: "scams",
+                name: "Scams & Fraud",
+                level: "Moderate",
+                icon: "sparkles",
+                accent: "#38bdf8",
+                chipClass: "bg-sky-500/10 border-sky-500/30",
+                description: "Opportunistic fraud frequently targets international travelers. This includes Rolex Rippers using spotters outside nightclubs, unlicensed mini-cabs charging extreme fees, and distraction-based ATM card-swapping traps.",
+                tips: [
+                    "Only hail official black cabs from designated ranks or pre-book via reputable apps like Free Now, Gett, or Uber.",
+                    "Never input your bank PIN while someone stands near you; guard the keypad tightly.",
+                    "Decline free flowers, friendship bracelets, or betting games on Westminster Bridge."
+                ]
+            }
+        ];
+
+        const emergencyContacts = [
+            { name: "Emergency Services", num: "999", type: "Urgent", accent: "#ef4444", icon: "phone", desc: "For immediate police, fire, or medical dispatch." },
+            { name: "Met Police", num: "101", type: "Non-Urgent", accent: "#38bdf8", icon: "shield", desc: "To report crimes that have already occurred." },
+            { name: "US Embassy London", num: "+44 (0)20 7499 9000", type: "Consular Assistance", accent: "#f59e0b", icon: "flag", desc: "For passport emergencies or U.S. citizen distress." },
+            { name: "NHS Health Line", num: "111", type: "Medical Assistance", accent: "#34d399", icon: "medical", desc: "For urgent, non-emergency medical advice." }
+        ];
+
+        const transitServices = [
+            {
+                name: "London Underground (The Tube)",
+                borderClass: "border-red-500",
+                icon: "train",
+                accent: "#ef4444",
+                desc: "The core of London's transit network spanning 11 rapid transit lines. Rapid, efficient, and highly monitored by British Transport Police.",
+                tips: "Stay alert during rush hours when pickpockets are most active. Always stand behind the yellow platform line. Mobile reception is available across modern subterranean segments such as the Elizabeth Line and on many platforms."
+            },
+            {
+                name: "Elizabeth Line",
+                borderClass: "border-purple-500",
+                icon: "train",
+                accent: "#a855f7",
+                desc: "A high-speed, modern east-west hybrid railway system traversing central London deep underground. Spacious and fully air-conditioned.",
+                tips: "Highly recommended when traveling with large luggage from Heathrow Airport to central stations. Advanced CCTV and platform-edge screen doors provide robust passenger safety."
+            },
+            {
+                name: "London Bus Network",
+                borderClass: "border-red-600",
+                icon: "bus",
+                accent: "#dc2626",
+                desc: "Over 700 routes serviced by London's iconic red double-decker buses. Ideal for short journeys and sightseeing.",
+                tips: "All buses are entirely cashless; you must touch in with a contactless card or Oyster card when boarding. Keep personal items secure when sitting near open doors or windows on the lower deck."
+            },
+            {
+                name: "Docklands Light Railway (DLR) & Overground",
+                borderClass: "border-teal-600",
+                icon: "route",
+                accent: "#14b8a6",
+                desc: "Automated driverless light rail serving East London and Docklands, alongside the Overground orbital suburban network.",
+                tips: "Always remember to touch in and touch out at DLR stations, as many platform entries lack physical ticket barriers."
+            },
+            {
+                name: "River Services (Uber Boat by Thames Clippers)",
+                borderClass: "border-sky-500",
+                icon: "ferry",
+                accent: "#0ea5e9",
+                desc: "River bus services running regularly along the River Thames between Putney and Woolwich Arsenal.",
+                tips: "A safe, comfortable, and scenic alternative to traditional underground travel, with indoor and outdoor decks plus a small onboard cafe."
+            }
+        ];
+
+        const boroughProfiles = [
+            {
+                borough: "Westminster",
+                risk: "High Risk",
+                riskClass: "bg-red-500/10 text-red-400",
+                title: "Soho, Oxford Street, Covent Garden",
+                description: "Known primarily for high-frequency phone snatching, luxury watch theft targeting patrons leaving high-end venues late at night, and persistent pickpocketing in crowded Tube stations and shopping thoroughfares.",
+                tags: ["Phone Grab", "Watch Theft", "Pickpockets"]
+            },
+            {
+                borough: "Camden",
+                risk: "Moderate-High",
+                riskClass: "bg-amber-500/10 text-amber-400",
+                title: "Camden Town & Market Area",
+                description: "Crowded outdoor markets make this a prime venue for pickpocket networks and distraction theft. Visitors are frequently targeted by unlicensed vendors, street scams, and moped phone-snatches along Camden High Street.",
+                tags: ["Pickpockets", "Market Scams", "Bicycle Theft"]
+            },
+            {
+                borough: "Kensington & Chelsea",
+                risk: "Moderate",
+                riskClass: "bg-amber-500/10 text-amber-400",
+                title: "South Kensington, Knightsbridge",
+                description: "Highly targeted for luxury asset crimes, including theft of high-end watches outside restaurants and clubs, luxury vehicle break-ins, and sophisticated distraction scams around major museums.",
+                tags: ["Luxury Watch Theft", "Vehicle Crime"]
+            },
+            {
+                borough: "Hackney & Tower Hamlets",
+                risk: "Moderate-High",
+                riskClass: "bg-amber-500/10 text-amber-400",
+                title: "Shoreditch, Brick Lane, Whitechapel",
+                description: "Dense nightlife venues see high rates of opportunistic smartphone theft from tables and bars. Shoreditch and Brick Lane corridor areas experience elevated frequencies of bike theft and moped-assisted snatchings.",
+                tags: ["Opportunistic Theft", "Bicycle Snatch"]
+            },
+            {
+                borough: "Islington",
+                risk: "Moderate",
+                riskClass: "bg-slate-800 text-slate-400",
+                title: "Angel, Upper Street, Finsbury Park",
+                description: "Major transit corridors suffer from e-scooter and e-bike phone grabs near busy Tube exits. Residential street edges are prone to vehicle-related break-ins and opportunistic bicycle thefts.",
+                tags: ["Transit Path Snatch", "Bicycle Theft"]
+            }
+        ];
+
+        const tabs = [
+            { id: "compliance", label: '<span class="block leading-tight text-center">Local<br>Compliance</span>' },
+            { id: "transport", label: "Transportation" },
+            { id: "boroughs", label: "Boroughs" },
+            { id: "riskmap", label: "Risk Map" },
+            { id: "contacts", label: "Emergency Help" }
+        ];
+
+        const state = {
+            selectedRiskId: "overall",
+            activeTab: "compliance"
+        };
+
+        const iconPaths = {
+            shieldAlert: '<path d="M12 3 5 6v5c0 4.4 2.9 8.5 7 10 4.1-1.5 7-5.6 7-10V6l-7-3Z"></path><path d="M12 8v5"></path><path d="M12 16h.01"></path>',
+            smartphone: '<rect x="7" y="2.5" width="10" height="19" rx="2"></rect><path d="M11 18.5h2"></path>',
+            users: '<path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="10" cy="7" r="3"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>',
+            sparkles: '<path d="m12 3 1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6L12 3Z"></path><path d="M19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8L19 14Z"></path><path d="M5 14l.8 2.2L8 17l-2.2.8L5 20l-.8-2.2L2 17l2.2-.8L5 14Z"></path>',
+            alert: '<path d="M12 4 3 20h18L12 4Z"></path><path d="M12 9v5"></path><path d="M12 17h.01"></path>',
+            clock: '<circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>',
+            cloud: '<path d="M7 18h10a4 4 0 0 0 .4-8A5.5 5.5 0 0 0 7 8.5 4.5 4.5 0 0 0 7 18Z"></path>',
+            sun: '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.9 4.9 1.4 1.4"></path><path d="m17.7 17.7 1.4 1.4"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m4.9 19.1 1.4-1.4"></path><path d="m17.7 6.3 1.4-1.4"></path>',
+            banknote: '<rect x="3" y="6" width="18" height="12" rx="2"></rect><circle cx="12" cy="12" r="2.5"></circle><path d="M7 9h.01"></path><path d="M17 15h.01"></path>',
+            activity: '<path d="M3 12h4l2-5 4 10 2-5h6"></path>',
+            info: '<circle cx="12" cy="12" r="9"></circle><path d="M12 10v5"></path><path d="M12 7h.01"></path>',
+            shield: '<path d="M12 3 5 6v5c0 4.4 2.9 8.5 7 10 4.1-1.5 7-5.6 7-10V6l-7-3Z"></path>',
+            mapPin: '<path d="M12 21s-6-4.8-6-10a6 6 0 1 1 12 0c0 5.2-6 10-6 10Z"></path><circle cx="12" cy="11" r="2.5"></circle>',
+            scale: '<path d="M12 4v16"></path><path d="M5 7h14"></path><path d="m7 7-3 5a3 3 0 0 0 6 0L7 7Z"></path><path d="m17 7-3 5a3 3 0 0 0 6 0l-3-5Z"></path><path d="M8 20h8"></path>',
+            train: '<rect x="6" y="3" width="12" height="14" rx="2"></rect><path d="M8 17 6 21"></path><path d="M16 17l2 4"></path><path d="M8 7h8"></path><path d="M8 11h8"></path>',
+            bus: '<rect x="5" y="4" width="14" height="13" rx="2"></rect><path d="M7 17v3"></path><path d="M17 17v3"></path><path d="M7 8h10"></path><circle cx="8.5" cy="14.5" r="1"></circle><circle cx="15.5" cy="14.5" r="1"></circle>',
+            route: '<circle cx="6" cy="6" r="2"></circle><circle cx="18" cy="18" r="2"></circle><path d="M8 6h4a2 2 0 0 1 2 2v2"></path><path d="M14 14h-4a2 2 0 0 0-2 2v0"></path><path d="M14 10h4"></path>',
+            ferry: '<path d="M4 17c2 1.5 4 1.5 6 0 2 1.5 4 1.5 6 0 2 1.5 4 1.5 4 0"></path><path d="M6 14h12l-1-6H7l-1 6Z"></path><path d="M12 8V4"></path>',
+            creditCard: '<rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M3 10h18"></path><path d="M7 15h4"></path>',
+            ticket: '<path d="M4 9a2 2 0 0 0 0 6v2h16v-2a2 2 0 0 0 0-6V7H4v2Z"></path><path d="M12 7v10"></path>',
+            map: '<path d="m3 6 6-2 6 2 6-2v14l-6 2-6-2-6 2V6Z"></path><path d="M9 4v14"></path><path d="M15 6v14"></path>',
+            phone: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.5 3a2 2 0 0 1-.6 1.8l-1.3 1.3a16 16 0 0 0 6.3 6.3l1.3-1.3a2 2 0 0 1 1.8-.6l3 .5a2 2 0 0 1 1.7 2Z"></path>',
+            flag: '<path d="M5 21V4"></path><path d="M5 4h10l-1.5 3L15 10H5"></path>',
+            medical: '<path d="M12 5v14"></path><path d="M5 12h14"></path><rect x="3" y="3" width="18" height="18" rx="4"></rect>',
+            compass: '<circle cx="12" cy="12" r="9"></circle><path d="m14.5 9.5-5 5 5-2.5 2.5-5-5 2.5Z"></path>'
+        };
+
+        function icon(name, sizeClass, color, strokeWidth = 2) {
+            const paths = iconPaths[name];
+            if (!paths) {
+                return '';
+            }
+            return '<span aria-hidden="true" class="inline-flex items-center justify-center ' + sizeClass + '" style="color: ' + color + ';">' +
+                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + strokeWidth + '" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">' +
+                paths +
+                '</svg></span>';
+        }
+
+        const formatDate = (date) => date.toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        });
+
+        function renderApp() {
+            document.getElementById("root").innerHTML = `
+                <div class="flex flex-col min-h-screen bg-slate-950 text-slate-100">
+                    <div class="bg-red-950/90 border-b border-red-700/60 text-red-100 px-4 py-3 sm:py-4 z-50 text-center relative overflow-hidden flex flex-col sm:flex-row items-center justify-center gap-3">
+                        <div class="absolute top-0 bottom-0 left-0 right-0 bg-red-600/10 pointer-events-none pulse-accent"></div>
+                        <div class="flex items-center gap-2 font-black tracking-wider text-xs bg-red-600 text-white px-2.5 py-1 rounded-full uppercase animate-pulse">
+                            ${icon("alert", "w-3.5 h-3.5", "#ffffff", 2.4)} SEVERE THREAT LEVEL
+                        </div>
+                        <p class="text-xs sm:text-sm font-bold tracking-tight">
+                            UK Government raised Terrorism threat level to <span class="underline decoration-wavy decoration-red-400">SEVERE</span> following Golders Green incident. Review routing schedules and exercise high caution.
+                        </p>
+                    </div>
+
+                    <header class="relative w-full h-[320px] sm:h-[350px] md:h-[420px] overflow-hidden shadow-2xl">
+                        <img
+                            src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=2000"
+                            alt="London View"
+                            class="absolute inset-0 w-full h-full object-cover scale-105"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-black/50"></div>
+
+                        <div class="absolute top-4 right-4 sm:right-6 lg:right-8 flex flex-col sm:flex-row gap-2 sm:gap-3 z-30">
+                            <div class="glass px-3.5 py-2 rounded-2xl flex items-center gap-3 shadow-xl">
+                                ${icon("clock", "w-4 h-4", "#38bdf8")}
+                                <div class="text-left">
+                                    <div class="text-[9px] uppercase font-black text-slate-400 leading-none mb-1">London Time</div>
+                                    <div id="london-time" class="text-xs sm:text-sm font-black text-white tabular-nums tracking-tighter">--:--</div>
+                                </div>
+                            </div>
+                            <div class="glass px-3.5 py-2 rounded-2xl flex items-center gap-3 shadow-xl">
+                                <span id="weather-icon">${icon("cloud", "w-4 h-4", "#94a3b8")}</span>
+                                <div class="text-left">
+                                    <div class="text-[9px] uppercase font-black text-slate-400 leading-none mb-1">Weather</div>
+                                    <div id="weather-temp" class="text-xs sm:text-sm font-black text-white tabular-nums tracking-tighter">--</div>
+                                </div>
+                            </div>
+                            <div class="glass px-3.5 py-2 rounded-2xl flex items-center gap-3 shadow-xl">
+                                ${icon("banknote", "w-4 h-4", "#34d399")}
+                                <div class="text-left">
+                                    <div class="text-[9px] uppercase font-black text-slate-400 leading-none mb-1">FX Rate</div>
+                                    <div id="fx-rate" class="text-xs sm:text-sm font-black text-white tabular-nums tracking-tighter">Syncing...</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative h-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-8 sm:pb-12">
+                            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                                <div class="animate-in fade-in slide-in-from-left duration-700">
+                                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-[900] tracking-tight text-white leading-none text-shadow-lg">London, UK</h1>
+                                    <p class="text-slate-200 text-sm sm:text-lg mt-3 max-w-xl font-semibold drop-shadow-md flex items-center gap-2">
+                                        ${icon("activity", "w-4 h-4", "#38bdf8")} Security Intelligence & Traveler Support Hub
+                                    </p>
+                                </div>
+                                <div class="flex items-center gap-4 bg-red-950/40 backdrop-blur-xl p-4 pr-10 rounded-3xl border border-red-500/30 self-start shadow-2xl animate-in fade-in slide-in-from-right duration-700">
+                                    <div class="relative">
+                                        <div class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping absolute"></div>
+                                        <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+                                    </div>
+                                    <div class="text-left">
+                                        <div class="text-[9px] uppercase font-black text-red-300 leading-none tracking-[0.2em]">Overall City Status</div>
+                                        <div class="text-lg font-[900] text-white leading-none mt-1">Exercise High Caution</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    <main class="flex-1 w-full max-w-6xl mx-auto p-4 sm:p-6 lg:p-8 space-y-8 -mt-8 relative z-10">
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 text-left">
+                            <div class="lg:col-span-1 flex flex-col gap-6">
+                                <div class="flex flex-col gap-3">
+                                    <h2 class="text-xs font-black uppercase tracking-[0.2em] text-slate-400 px-1">Primary Safety Risks</h2>
+                                    <div id="risk-buttons" class="flex lg:flex-col gap-3 overflow-x-auto no-scrollbar pb-3 lg:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0"></div>
+                                </div>
+
+                                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-lg">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        ${icon("info", "w-4 h-4", "#38bdf8")}
+                                        <h2 class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">Pre-departure Intelligence</h2>
+                                    </div>
+                                    <p class="text-[13px] leading-relaxed font-semibold text-slate-300">
+                                        All U.S. and international visa-exempt citizens must obtain an <a href="https://www.gov.uk/eta/apply" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:text-sky-300 underline underline-offset-4 decoration-2 decoration-sky-500/30 transition-colors">Electronic Travel Authorization (ETA)</a> before flying to the UK. Ensure it is secured 72 hours prior.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="lg:col-span-2">
+                                <div id="selected-risk" class="h-full rounded-3xl p-6 sm:p-8 border shadow-2xl flex flex-col justify-between transition-all duration-500 bg-slate-900/90 border-slate-800"></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900 border border-slate-800 rounded-[2.5rem] overflow-hidden shadow-2xl">
+                            <div id="tab-buttons" class="flex border-b border-slate-800 overflow-x-auto no-scrollbar scroll-smooth"></div>
+                            <div id="tab-content" class="p-6 sm:p-10"></div>
+                        </div>
+                    </main>
+
+                    <footer class="p-10 sm:p-16 border-t border-slate-900 mt-16 bg-slate-950 text-left">
+                        <div class="max-w-4xl mx-auto space-y-8">
+                            <p class="text-slate-400 text-[10px] sm:text-xs font-black uppercase tracking-[0.3em]">Last Update Ref: ${formatDate(new Date())}</p>
+                            <div class="text-slate-600 text-[10px] sm:text-[11px] leading-relaxed max-w-2xl mx-auto font-medium px-4">
+                                <p class="mb-4 text-left"><span class="text-slate-500 font-black uppercase tracking-widest mr-2">Disclaimer:</span> This dashboard is for demonstration purposes only. All information, alerts, maps, and advisories displayed are simulated to showcase platform capabilities and do not constitute real-time security directives, official legal counsel, or immediate emergency dispatch coordination.</p>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            `;
+
+            renderRiskButtons();
+            renderSelectedRisk(state.selectedRiskId);
+            renderTabButtons();
+            renderTab(state.activeTab);
+            bindEvents();
+            updateLondonTime();
+            syncExternalData();
+            window.setInterval(updateLondonTime, 1000);
+            window.setInterval(syncExternalData, 300000);
+        }
+
+        function renderRiskButtons() {
+            document.getElementById("risk-buttons").innerHTML = riskCategories.map((risk) => `
+                <button
+                    type="button"
+                    data-risk-id="${risk.id}"
+                    class="risk-button flex-shrink-0 flex items-center gap-4 p-4 rounded-2xl border transition-all duration-300 text-left min-w-[240px] lg:min-w-full shadow-lg"
+                >
+                    <div class="p-3 rounded-xl ${risk.chipClass} border shadow-inner">
+                        ${icon(risk.icon, "w-5 h-5", risk.accent)}
+                    </div>
+                    <div>
+                        <div class="text-sm font-black tracking-tight">${risk.name}</div>
+                        <div class="text-[10px] opacity-60 uppercase font-black tracking-widest mt-0.5">${risk.level}</div>
+                    </div>
+                </button>
+            `).join("");
+            updateRiskButtonStyles();
+        }
+
+        function updateRiskButtonStyles() {
+            document.querySelectorAll(".risk-button").forEach((button) => {
+                const isActive = button.dataset.riskId === state.selectedRiskId;
+                button.className = "risk-button flex-shrink-0 flex items-center gap-4 p-4 rounded-2xl border transition-all duration-300 text-left min-w-[240px] lg:min-w-full shadow-lg " + (
+                    isActive
+                        ? "bg-slate-800/80 border-slate-600 ring-2 ring-sky-500/50"
+                        : "bg-slate-900 border-slate-800/80 hover:border-slate-700"
+                );
+            });
+        }
+
+        function renderSelectedRisk(riskId) {
+            state.selectedRiskId = riskId;
+            updateRiskButtonStyles();
+            const selectedRisk = riskCategories.find((risk) => risk.id === riskId) || riskCategories[0];
+            const policeProfile = selectedRisk.policeProfile ? `
+                <div class="p-4 bg-red-950/20 border border-red-500/20 rounded-xl">
+                    <div class="flex items-center gap-2 mb-2 text-[10px] uppercase font-black tracking-widest text-red-400">
+                        ${icon("shield", "w-3.5 h-3.5", "#f87171")} Security Advisory Force Profile
+                    </div>
+                    <p class="text-xs leading-relaxed text-slate-300">${selectedRisk.policeProfile}</p>
+                </div>
+            ` : "";
+            const hotspots = selectedRisk.locations ? `
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2 text-[10px] uppercase font-black tracking-widest text-slate-400">
+                        ${icon("mapPin", "w-3.5 h-3.5", "#38bdf8")} Risk Hotspots
+                    </div>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-xs font-bold text-slate-300 pl-4 list-disc">
+                        ${selectedRisk.locations.map((location) => `<li>${location}</li>`).join("")}
+                    </ul>
+                </div>
+            ` : "";
+            const stats = selectedRisk.stats ? `
+                <div class="p-4 bg-slate-950/40 border border-slate-800 rounded-xl text-xs font-bold italic text-slate-400">
+                    <span class="text-[10px] uppercase tracking-widest block not-italic text-slate-500 mb-1">Incident context data</span>
+                    "${selectedRisk.stats}"
+                </div>
+            ` : "";
+
+            document.getElementById("selected-risk").innerHTML = `
+                <div class="space-y-6">
+                    <div class="flex justify-between items-start gap-4">
+                        <div>
+                            <div class="text-[10px] uppercase font-black tracking-[0.3em] text-slate-500 mb-1">Intelligence Focus Area</div>
+                            <h3 class="text-2xl sm:text-3xl font-black tracking-tighter leading-none text-white">${selectedRisk.name}</h3>
+                        </div>
+                        <div class="bg-slate-800 p-3 rounded-2xl border border-slate-700 shadow-inner">
+                            ${icon(selectedRisk.icon, "w-6 h-6", selectedRisk.accent)}
+                        </div>
+                    </div>
+                    <p class="text-sm sm:text-base leading-relaxed font-medium text-slate-300">${selectedRisk.description}</p>
+                    ${policeProfile}
+                    ${hotspots}
+                    ${stats}
+                </div>
+                <div class="mt-6 pt-6 border-t border-slate-800">
+                    <div class="text-xs font-black uppercase tracking-widest text-slate-500 mb-3">Actionable Field Protocol</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        ${selectedRisk.tips.map((tip, index) => `
+                            <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800 text-xs font-semibold text-slate-300 flex items-start gap-2">
+                                <span class="text-sky-400 font-black">0${index + 1}.</span>
+                                <span>${tip}</span>
+                            </div>
+                        `).join("")}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderTabButtons() {
+            document.getElementById("tab-buttons").innerHTML = tabs.map((tab) => `
+                <button
+                    type="button"
+                    data-tab-id="${tab.id}"
+                    class="tab-button flex-shrink-0 flex-1 min-w-[150px] p-5 sm:p-6 text-xs sm:text-sm font-black uppercase tracking-[0.1em] transition-all duration-300 relative flex items-center justify-center"
+                >
+                    <span>${tab.label}</span>
+                </button>
+            `).join("");
+            updateTabButtonStyles();
+        }
+
+        function updateTabButtonStyles() {
+            document.querySelectorAll(".tab-button").forEach((button) => {
+                const isActive = button.dataset.tabId === state.activeTab;
+                button.className = "tab-button flex-shrink-0 flex-1 min-w-[150px] p-5 sm:p-6 text-xs sm:text-sm font-black uppercase tracking-[0.1em] transition-all duration-300 relative flex items-center justify-center " + (
+                    isActive ? "bg-slate-800/50 text-sky-400" : "text-slate-500 hover:text-slate-300"
+                );
+                button.innerHTML = `<span>${tabs.find((tab) => tab.id === button.dataset.tabId).label}</span>${isActive ? '<div class="absolute bottom-0 left-0 right-0 h-1 bg-sky-500 shadow-[0_0_15px_rgba(14,165,233,0.5)]"></div>' : ""}`;
+            });
+        }
+
+        function renderTab(tabId) {
+            state.activeTab = tabId;
+            updateTabButtonStyles();
+            const tabContent = document.getElementById("tab-content");
+            const panels = {
+                compliance: renderCompliancePanel(),
+                transport: renderTransportPanel(),
+                boroughs: renderBoroughsPanel(),
+                riskmap: renderRiskMapPanel(),
+                contacts: renderContactsPanel()
+            };
+            tabContent.innerHTML = panels[tabId] || panels.compliance;
+        }
+
+        function renderCompliancePanel() {
+            return `
+                <div class="max-w-4xl space-y-6 animate-in fade-in duration-500 text-left">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="p-3 bg-red-500/20 rounded-2xl border border-red-500/30">
+                            ${icon("scale", "w-6 h-6", "#f87171", 2.4)}
+                        </div>
+                        <h3 class="text-lg font-black uppercase tracking-widest text-red-400">Restricted Defense & Substance Warning</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="p-6 bg-slate-950 border border-slate-800 rounded-3xl space-y-4">
+                            <div class="text-xs font-black uppercase tracking-widest text-red-400">Weaponry & Self Defense Sprays</div>
+                            <p class="text-sm font-bold leading-relaxed text-slate-300">
+                                Possession of pepper sprays, mace, defensive pocket blades, or stun weaponry is strictly illegal under the UK Firearms Act and Prevention of Crime Act.
+                            </p>
+                            <p class="text-xs font-semibold text-slate-500 italic">
+                                Do not travel with these items; carrying them in public places will result in criminal detention.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-slate-950 border border-slate-800 rounded-3xl space-y-4">
+                            <div class="text-xs font-black uppercase tracking-widest text-amber-500">Narcotics & Cannabis Regulations</div>
+                            <p class="text-sm font-bold leading-relaxed text-slate-300">
+                                Importing cannabis flower, leaves, high-THC oils, or THC-infused edibles is strictly illegal. The UK categorizes THC as a Class B substance.
+                            </p>
+                            <p class="text-xs font-semibold text-slate-500 italic">
+                                Even medical prescriptions authorized in individual U.S. states cannot be imported without prior UK Home Office licenses.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderTransportPanel() {
+            return `
+                <div class="max-w-6xl space-y-8 animate-in fade-in duration-500 text-left">
+                    <div>
+                        <h3 class="text-lg font-black tracking-tight text-white">London Public Transportation Guide</h3>
+                        <p class="text-xs text-slate-500 font-semibold">A practical overview of transit options available to travelers, complete with key safety protocols (Source: Demo).</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        ${transitServices.map((service) => `
+                            <div class="p-6 bg-slate-950/80 border-t-4 ${service.borderClass} border-x border-b border-sky-500/30 rounded-2xl space-y-3 hover:border-sky-400 transition-all shadow-[0_0_15px_rgba(14,165,233,0.06)] hover:shadow-[0_0_20px_rgba(14,165,233,0.2)]">
+                                <div class="flex items-center gap-2">
+                                    <div class="p-1.5 bg-slate-900 border border-slate-800 rounded-lg text-sky-400">
+                                        ${icon(service.icon, "w-5 h-5", service.accent)}
+                                    </div>
+                                    <h4 class="text-sm font-black text-white">${service.name}</h4>
+                                </div>
+                                <p class="text-xs text-slate-400 leading-relaxed font-semibold">${service.desc}</p>
+                                <div class="pt-2 border-t border-slate-900">
+                                    <span class="text-[10px] uppercase font-black tracking-wider text-amber-500 block mb-1">Safety Advisory Protocol</span>
+                                    <p class="text-[11px] text-slate-300 leading-relaxed font-medium">${service.tips}</p>
+                                </div>
+                            </div>
+                        `).join("")}
+                    </div>
+
+                    <div class="pt-6 border-t border-slate-800/50">
+                        <h4 class="text-xs font-black uppercase tracking-widest text-slate-500 mb-4">Core Ticketing & Transit Rules</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div class="p-4 bg-slate-950 rounded-2xl border border-slate-850">
+                                <div class="text-xs font-bold text-white mb-1 flex items-center gap-1.5">
+                                    ${icon("creditCard", "w-3.5 h-3.5", "#38bdf8")} Cashless Network
+                                </div>
+                                <p class="text-[11px] text-slate-400 font-semibold leading-relaxed">
+                                    London's entire public transport network is completely cash-free. You cannot buy bus tickets or Tube fares using physical currency.
+                                </p>
+                            </div>
+                            <div class="p-4 bg-slate-950 rounded-2xl border border-slate-850">
+                                <div class="text-xs font-bold text-white mb-1 flex items-center gap-1.5">
+                                    ${icon("smartphone", "w-3.5 h-3.5", "#f59e0b")} Easy Pay Methods
+                                </div>
+                                <p class="text-[11px] text-slate-400 font-semibold leading-relaxed">
+                                    Simply tap your contactless credit or debit card, phone, or smartwatch over yellow readers at station barriers and bus boarding points.
+                                </p>
+                            </div>
+                            <div class="p-4 bg-slate-950 rounded-2xl border border-slate-850">
+                                <div class="text-xs font-bold text-white mb-1 flex items-center gap-1.5">
+                                    ${icon("ticket", "w-3.5 h-3.5", "#34d399")} Oyster Cards
+                                </div>
+                                <p class="text-[11px] text-slate-400 font-semibold leading-relaxed">
+                                    Alternatively, purchase a physical Oyster Card at station terminals. Always remember to tap in and tap out to avoid penalty fares.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderBoroughsPanel() {
+            return `
+                <div class="max-w-6xl space-y-6 animate-in fade-in duration-500 text-left">
+                    <div>
+                        <h3 class="text-lg font-black tracking-tight text-white">Borough Crime & Safety Profiles</h3>
+                        <p class="text-xs text-slate-500 font-semibold">Historical and tactical security profiles of key central London zones (Source: Demo).</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        ${boroughProfiles.map((profile) => `
+                            <div class="p-6 bg-slate-950/80 border border-sky-500/30 rounded-2xl space-y-3 hover:border-sky-400 transition-all shadow-[0_0_15px_rgba(14,165,233,0.06)] hover:shadow-[0_0_20px_rgba(14,165,233,0.2)]">
+                                <div class="flex items-center justify-between gap-3">
+                                    <span class="text-xs font-black text-sky-400 uppercase tracking-wider">${profile.borough}</span>
+                                    <span class="text-[10px] ${profile.riskClass} font-bold px-2.5 py-0.5 rounded-full uppercase">${profile.risk}</span>
+                                </div>
+                                <h4 class="text-sm font-black text-white">${profile.title}</h4>
+                                <p class="text-xs text-slate-400 leading-relaxed font-semibold">${profile.description}</p>
+                                <div class="pt-2 flex flex-wrap gap-1">
+                                    ${profile.tags.map((tag) => `
+                                        <span class="text-[9px] bg-slate-900 border border-slate-800 text-slate-400 px-2.5 py-0.5 rounded-md font-bold">${tag}</span>
+                                    `).join("")}
+                                </div>
+                            </div>
+                        `).join("")}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderRiskMapPanel() {
+            return `
+                <div class="w-full rounded-3xl overflow-hidden border border-slate-800 bg-slate-950 shadow-inner">
+                    <div class="p-4 bg-slate-950 border-b border-slate-850 flex justify-between items-center flex-wrap gap-2">
+                        <div class="text-xs font-black tracking-tight text-slate-400 flex items-center gap-1.5">
+                            ${icon("map", "w-3.5 h-3.5", "#38bdf8")} Risk Map
+                        </div>
+                        <span class="text-[10px] uppercase font-bold text-slate-500">Source: Demo</span>
+                    </div>
+                    <iframe
+                        src="https://www.google.com/maps/d/embed?mid=1b0JNufCSBmiavjQ_uUh4lIuuz0z0OBI"
+                        width="100%"
+                        height="450"
+                        class="border-0 w-full h-[450px] rounded-b-3xl block"
+                        allowfullscreen
+                        loading="lazy"
+                    ></iframe>
+                </div>
+            `;
+        }
+
+        function renderContactsPanel() {
+            return `
+                <div class="space-y-6 animate-in fade-in duration-500 text-left">
+                    <div>
+                        <h3 class="text-lg font-black tracking-tight text-white">Emergency Services & Critical Response</h3>
+                        <p class="text-xs text-slate-500 font-semibold">Immediate telephonic link keys. Always tap to dial directly.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        ${emergencyContacts.map((contact) => `
+                            <a
+                                href="tel:${contact.num.replace(/[^\d+]/g, "")}"
+                                class="group p-5 bg-slate-950 border border-slate-850 rounded-2xl hover:bg-slate-900/60 hover:border-sky-500/30 transition-all flex flex-col justify-between h-[160px] shadow-sm"
+                            >
+                                <div class="flex items-center justify-between">
+                                    <span class="text-[10px] font-black uppercase tracking-wider text-slate-500 group-hover:text-sky-400 transition-colors">${contact.type}</span>
+                                    <div class="p-1.5 bg-slate-900 border border-slate-800 rounded-lg group-hover:bg-sky-500/10 transition-colors">
+                                        ${icon(contact.icon, "w-4 h-4", contact.accent)}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-black text-white font-mono tracking-tighter group-hover:text-sky-400">${contact.num}</div>
+                                    <div class="text-xs font-black text-slate-100 mt-1">${contact.name}</div>
+                                    <p class="text-[10px] text-slate-500 leading-snug font-semibold mt-0.5">${contact.desc}</p>
+                                </div>
+                            </a>
+                        `).join("")}
+                    </div>
+                    <div class="p-4 bg-slate-950 rounded-2xl border border-slate-850 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-emerald-500/15 rounded-xl border border-emerald-500/20 text-emerald-400">
+                                ${icon("compass", "w-5 h-5", "#34d399")}
+                            </div>
+                            <div class="text-left">
+                                <div class="text-xs font-bold text-white">Smart Traveler Enrollment Program (STEP)</div>
+                                <p class="text-[10px] text-slate-400 font-semibold leading-relaxed">Enroll with the U.S. State Department to receive localized real-time embassy advisory alerts during your trip.</p>
+                            </div>
+                        </div>
+                        <a
+                            href="https://step.state.gov/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-xs font-black uppercase tracking-wider text-white rounded-xl transition-all"
+                        >
+                            Register with STEP
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function bindEvents() {
+            document.querySelectorAll("[data-risk-id]").forEach((button) => {
+                button.addEventListener("click", () => renderSelectedRisk(button.dataset.riskId));
+            });
+
+            document.querySelectorAll("[data-tab-id]").forEach((button) => {
+                button.addEventListener("click", () => renderTab(button.dataset.tabId));
+            });
+        }
+
+        function updateLondonTime() {
+            const londonTime = new Date().toLocaleTimeString("en-GB", {
+                timeZone: "Europe/London",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: true
+            });
+            const timeNode = document.getElementById("london-time");
+            if (timeNode) {
+                timeNode.textContent = londonTime;
+            }
+        }
+
+        async function syncExternalData() {
+            const weatherNode = document.getElementById("weather-temp");
+            const weatherIcon = document.getElementById("weather-icon");
+            const fxNode = document.getElementById("fx-rate");
+
+            try {
+                const weatherResponse = await fetch("https://api.open-meteo.com/v1/forecast?latitude=51.5074&longitude=-0.1278&current_weather=true");
+                const weatherData = await weatherResponse.json();
+                if (weatherData && weatherData.current_weather && weatherNode && weatherIcon) {
+                    const temp = Math.round(weatherData.current_weather.temperature);
+                    weatherNode.textContent = temp + " C";
+                    weatherIcon.innerHTML = temp > 18
+                        ? icon("sun", "w-4 h-4", "#f59e0b")
+                        : icon("cloud", "w-4 h-4", "#94a3b8");
+                }
+            } catch (error) {
+                if (weatherNode) {
+                    weatherNode.textContent = "Unavailable";
+                }
+            }
+
+            try {
+                const fxResponse = await fetch("https://api.frankfurter.dev/v1/latest?from=GBP&to=USD");
+                const fxData = await fxResponse.json();
+                if (fxData && fxData.rates && typeof fxData.rates.USD === "number" && fxNode) {
+                    fxNode.textContent = "GBP 1 = USD " + fxData.rates.USD.toFixed(2);
+                } else if (fxNode) {
+                    fxNode.textContent = "Unavailable";
+                }
+            } catch (error) {
+                if (fxNode) {
+                    fxNode.textContent = "Unavailable";
+                }
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", renderApp);
+    </script>
+</body>
+</html>
